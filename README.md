@@ -14,7 +14,7 @@ cet espace cartographié est représenté sous la forme d'un tableau $I \times J
 
 pour chaque particule $i$ :\
 les positions $P_i = (P_{ix}, P_{iy})$ et les cap $\vec{c_i} = (c_{ix}, c_{iy})$ sont tirés aléatoirement\
-avec $P_{ix} \in [0, i]$ et $P_{iy} \in [0, j]$\
+avec $P_{ix} \in [0, I]$ et $P_{iy} \in [0, K]$\
 les caps $\vec{c_i}$ ont pour norme $\lVert \vec{c_i} \rVert = 1$
 
 chaque particule est dotée, comme l'agent d'un "appareil de mesure" virtuel sur son nez, lui permettant de donner avec une certaine précison la distance entre sa position et un obstacle dans la direction de son cap. 
