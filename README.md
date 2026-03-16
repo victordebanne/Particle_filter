@@ -10,7 +10,7 @@ je cherche à connaitre la postion de l'agent ainsi que son cap.
 ## Mise en place
 
 Je vais alors supposer un grand nombre $n$ de couples $(position, cap)$ que l'on nommera particules dans mon espace cartographié.\
-cet espace cartographié est représenté sous la forme d'un tableau $I * J$. 
+cet espace cartographié est représenté sous la forme d'un tableau $I \times J$. 
 
 pour chaque particule $i$ :\
 les positions $P_i = (P_{ix}, P_{iy})$ et les cap $\vec{c_i} = (c_{ix}, c_{iy})$ sont tirés aléatoirement\
