@@ -64,7 +64,7 @@ avec
 
 $$\epsilon \sim N(0, \sigma^2)$$
 
-parmi ces particules représentant bien l'état de l'agent, on peut encore favoriser celles qui le représente le mieux en adaptant le $\sigma_i$ de notre $\epsilon_i$ en définissant un $\sigma_{max}$ et adapter $/sigma_i$ comme 
+parmi ces particules représentant bien l'état de l'agent, on peut encore favoriser celles qui le représente le mieux en adaptant le $\sigma_i$ de notre $\epsilon_i$ en définissant un $\sigma_{max}$ et adapter $\sigma_i$ comme 
 
 $$\sigma_i = \frac{\sigma_{max}}{1 + \exp \left(wP(\ i\ ) + b \right)}$$
 
