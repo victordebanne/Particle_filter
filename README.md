@@ -1,9 +1,13 @@
 # Particle_filter
 
+## Introduction
+
 Le filtre particulaire que j'ai choisi de créer me sert à localiser un agent physique dans un espace déjà cartographié.\
 Cet agent est doté d'un appareil de mesure. Cet appareil donne une mesure de la distance devant l'agent avec une certaine précision.
 
 je cherche à connaitre la postion de l'agent ainsi que son cap.
+
+## Mise en place
 
 Je vais alors supposer un grand nombre $n$ de couples $(position, cap)$ que l'on nommera particules dans mon espace cartographié.\
 cet espace cartographié est représenté sous la forme d'un tableau $I * J$. 
@@ -18,6 +22,8 @@ chaque particule est dotée, comme l'agent d'un "appareil de mesure" virtuel sur
 à chaque tour, l'agent va effectuer un déplacement et une mesure.\
 les déplacements peuvent être des changements de position ou des changements de cap. (rotation sur soi-même).\
 chaque particule effectura le même déplacement et mesurera devant elle.
+
+## Mise en jour des probabilités
 
 On pourra donner une vraissemblance de la mesure de chaque particule comme la gaussienne de l'erreur entre la mesure effectuée par l'agent et celle effectuée par la particule. 
 
@@ -38,12 +44,14 @@ chaque particule au départ a une equiprobabilité de correctement représenter 
 
 On met alors à jour notre confiance dans la particule $i$ : 
 
-$$P(i \mid m) = \frac{L_i(m) P(i)}{\sum_{i=1}^n L_i(m) P(i)}$$
+$$P(i \mid m) = \frac{L_i(m) P(\ i\ )}{\sum_{i=1}^n L_i(m) P(\ i\ )}$$
 
 La probabilité que la particule $i$ représente correctement l'agent sachant la mesure $m$ de l'agent est égale à la vraissemblance de la mesure (ou des mesures) $v_i$ par notre à priori sur la particule (d'abord uniforme, puis se met à jour avec les mesures). 
 
-Le rééchantillonage permet de séléctionner et reproduire les particules ayant le mieux représenté l'état de l'agent.\
-on sélectionne $n$ particules avec probabilité proportionnelle à leur poids $P(i)$, par séléction/rejet, par roulette... 
+## Rééchantillonnage
+
+Le rééchantillonnage permet de séléctionner et reproduire les particules ayant le mieux représenté l'état de l'agent.\
+on sélectionne $n$ particules avec probabilité proportionnelle à leur poids $P(\ i\ )$, par séléction/rejet, par roulette... 
 on modifie les position $P_i$ de ces particules avec :
 
 $$P_i \leftarrow P_i + \epsilon$$ 
@@ -58,11 +66,11 @@ $$\epsilon \sim N(0, \sigma^2)$$
 
 parmi ces particules représentant bien l'état de l'agent, on peut encore favoriser celles qui le représente le mieux en adaptant le $\sigma_i$ de notre $\epsilon_i$ en définissant un $\sigma_{max}$ et adapter $/sigma_i$ comme 
 
-$$\sigma_i = \frac{\sigma_{max}}{1 + \exp \left(wP(i) + b \right)}$$
+$$\sigma_i = \frac{\sigma_{max}}{1 + \exp \left(wP(\ i\ ) + b \right)}$$
 
-avec $w$ et $b$ correctement choisis pour que la transition entre $\sigma_{max}$ et $0$ se fassent entre $\min{P(i)}$ et $\max{P(i)}$
+avec $w$ et $b$ correctement choisis pour que la transition entre $\sigma_{max}$ et $0$ se fassent entre $\min{P(\ i\ )}$ et $\max{P(\ i\ )}$
 
-à chaque étape de rééchantillonnage, on peut remettre les $P(i)$ à $\frac{1}{n}$ et intégrer aléatoirement une petite quantité de particules aléatoires afin d'éviter une dégénérescence. 
+à chaque étape de rééchantillonnage, on peut remettre les $P(\ i\ )$ à $\frac{1}{n}$ et intégrer aléatoirement une petite quantité de particules aléatoires afin d'éviter une dégénérescence. 
 
 
 
