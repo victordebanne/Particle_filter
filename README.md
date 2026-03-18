@@ -44,14 +44,14 @@ chaque particule au départ a une equiprobabilité de correctement représenter 
 
 On met alors à jour notre confiance dans la particule $i$ : 
 
-$$P(i \mid m) = \frac{L_i(m) P(\ i\ )}{\sum_{i=1}^n L_i(m) P(\ i\ )}$$
+$$\mathbb{P}(i \mid m) = \frac{L_i(m) \mathbb{P}(\ i\ )}{\sum_{i=1}^n L_i(m) \mathbb{P}(\ i\ )}$$
 
 La probabilité que la particule $i$ représente correctement l'agent sachant la mesure $m$ de l'agent est égale à la vraissemblance de la mesure (ou des mesures) $v_i$ par notre à priori sur la particule (d'abord uniforme, puis se met à jour avec les mesures). 
 
 ## Rééchantillonnage
 
 Le rééchantillonnage permet de séléctionner et reproduire les particules ayant le mieux représenté l'état de l'agent.\
-on sélectionne $n$ particules avec probabilité proportionnelle à leur poids $P(\ i\ )$, par séléction/rejet, par roulette... 
+on sélectionne $n$ particules avec probabilité proportionnelle à leur poids $\mathbb{P}(\ i\ )$, par séléction/rejet, par roulette... 
 on modifie les position $P_i$ de ces particules avec :
 
 $$P_i \leftarrow P_i + \epsilon$$ 
@@ -66,11 +66,11 @@ $$\epsilon \sim N(0, \sigma^2)$$
 
 parmi ces particules représentant bien l'état de l'agent, on peut encore favoriser celles qui le représente le mieux en adaptant le $\sigma_i$ de notre $\epsilon_i$ en définissant un $\sigma_{max}$ et adapter $\sigma_i$ comme 
 
-$$\sigma_i = \frac{\sigma_{max}}{1 + \exp \left(wP(\ i\ ) + b \right)}$$
+$$\sigma_i = \frac{\sigma_{max}}{1 + \exp \left(w\mathbb{P}(\ i\ ) + b \right)}$$
 
-avec $w$ et $b$ correctement choisis pour que la transition entre $\sigma_{max}$ et $0$ se fassent entre $\min{P(\ i\ )}$ et $\max{P(\ i\ )}$
+avec $w$ et $b$ correctement choisis pour que la transition entre $\sigma_{max}$ et $0$ se fassent entre $\min{\mathbb{P}(\ i\ )}$ et $\max{\mathbb{P}(\ i\ )}$
 
-à chaque étape de rééchantillonnage, on peut remettre les $P(\ i\ )$ à $\frac{1}{n}$ et intégrer aléatoirement une petite quantité de particules aléatoires afin d'éviter une dégénérescence. 
+à chaque étape de rééchantillonnage, on peut remettre les $\mathbb{P}(\ i\ )$ à $\frac{1}{n}$ et intégrer aléatoirement une petite quantité de particules aléatoires afin d'éviter une dégénérescence. 
 
 
 
